@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Services - Calibrated Computares</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <% include partials/header %>
+
+  <section>
+    <h2 class="bold">Our Services</h2>
+
+    <% if (!currentUser) { %>
+      <p class="login-prompt">Please <a href="/login">sign in</a> to view detailed service information and book a consultation.</p>
+    <% } %>
+
+    <h3>Web Design Tiers</h3>
+    <ul>
+      <% if (currentUser) { %>
+        <li><a href="/services/web-basic">Basic Web Design Package</a></li>
+        <li><a href="/services/web-standard">Standard Web Design Package</a></li>
+        <li><a href="/services/web-premium">Premium Web Design Package</a></li>
+      <% } else { %>
+        <li>Basic Web Design Package</li>
+        <li>Standard Web Design Package</li>
+        <li>Premium Web Design Package</li>
+      <% } %>
+    </ul>
+
+    <h3>Computer Tech Tiers</h3>
+    <ul>
+      <% if (currentUser) { %>
+        <li><a href="/services/tech-basic">Basic Tech Support</a></li>
+        <li><a href="/services/tech-standard">Standard Tech Support</a></li>
+        <li><a href="/services/tech-premium">Premium Tech Support</a></li>
+      <% } else { %>
+        <li>Basic Tech Support</li>
+        <li>Standard Tech Support</li>
+        <li>Premium Tech Support</li>
+      <% } %>
+    </ul>
+
+    <h3>Maintenance Packages</h3>
+    <ul>
+      <% if (currentUser) { %>
+        <li><a href="/services/maintenance-monthly">Monthly Maintenance</a></li>
+        <li><a href="/services/maintenance-yearly">Yearly Maintenance</a></li>
+      <% } else { %>
+        <li>Monthly Maintenance</li>
+        <li>Yearly Maintenance</li>
+      <% } %>
+    </ul>
+
+    <h3>Social Media Packages</h3>
+    <ul>
+      <% if (currentUser) { %>
+        <li><a href="/services/social-starter">Starter Social Package</a></li>
+        <li><a href="/services/social-growth">Growth Social Package</a></li>
+        <li><a href="/services/social-elite">Elite Social Package</a></li>
+      <% } else { %>
+        <li>Starter Social Package</li>
+        <li>Growth Social Package</li>
+        <li>Elite Social Package</li>
+      <% } %>
+    </ul>
+  </section>
+
+  <% include partials/footer %>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<header>
+    <div class="header-container">
+        <div class="header-left">
+            <a href="/"><img src="/images/cclogo.jpg"
+                    alt="Calibrated Computares Logo" class="logo"></a>
+        </div>
+
+        <nav class="header-center">
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="/reviews">Reviews</a>
+            <% if (currentUser) { %>
+            <a href="/portfolio">Portfolio</a>
+            <% } %>
+        </nav>
+
+        <div class="header-right">
+            <% if (currentUser) { %>
+            <a href="/logout">Logout</a>
+            <% } else { %>
+            <a href="/login">Login</a>
+            <% } %>
+        </div>
+    </div>
+</header>

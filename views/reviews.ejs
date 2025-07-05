@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reviews - Calibrated Computares</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <% include partials/header %>
+
+    <section>
+      <h2 class="bold">What Our Customers Are Saying</h2>
+      <% reviews.forEach((review, index) => { %>
+      <div class="review-row <%= index % 2 === 0 ? 'normal' : 'reverse' %>">
+        <div class="review-image">
+          <img src="<%= review.image %>" alt="Customer photo">
+        </div>
+        <div class="review-text">
+          <p class="review-quote">"<%= review.text %>"</p>
+          <p class="review-author">- <%= review.customer %></p>
+        </div>
+      </div>
+      <% }); %>
+    </section>
+    <section>
+      <h3>Leave a Review</h3>
+      <form action="/reviews" method="POST" class="review-form">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <textarea name="text" placeholder="Your Review" required></textarea><br>
+        <button type="submit">Submit Review</button>
+      </form>
+    </section>
+
+    <% include partials/footer %>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book a Consultation - Calibrated Computares</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <% include partials/header %>
+
+  <section>
+    <h2 class="bold">Book a Consultation</h2>
+    <form action="/book-consultation" method="POST" class="consult-form">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <input type="text" name="service" placeholder="Service of Interest" required><br>
+      <textarea name="details" placeholder="Additional Details" required></textarea><br>
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <% include partials/footer %>
+</body>
+</html>
