@@ -74,7 +74,50 @@ footer {
   color: white;
   padding: 20px;
 }
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #1abc9c;
+  color: white;
+  padding: 40px 20px;
+  flex-wrap: wrap;
+}
 
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center each section in its column horizontally */
+}
+
+/* Align content inside each section to the left */
+.footer-left > *,
+.footer-center > *,
+.footer-right > * {
+  text-align: left;
+  width: 100%; /* ensures left-aligned content fills the column */
+}
+
+/* Optional: consistent spacing between elements */
+.footer-left p,
+.footer-center p,
+.footer-right p {
+  margin: 5px 0;
+}
+
+.footer-right a {
+  color: white;
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+.footer-right a:hover {
+  text-decoration: underline;
+}
 .footer-container {
   display: flex;
   justify-content: space-between;
