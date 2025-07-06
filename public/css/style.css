@@ -19,7 +19,7 @@ h1 {
 h2 {
   font-size: 2rem;
   color: #555;
-} 
+}
 
 h3 {
   font-size: 1.5rem;
@@ -154,7 +154,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center; /* centers the block horizontally */
-  text-align: center;  /* centers the text inside */
+  text-align: center; /* centers the text inside */
 }
 
 /* Center trademark & socials within right column, but keep the column aligned right */
@@ -162,8 +162,8 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center; /* centers items within the right column */
-  text-align: center;  /* centers text inside */
-  margin-right: 20px;  /* adds spacing from page edge */
+  text-align: center; /* centers text inside */
+  margin-right: 20px; /* adds spacing from page edge */
 }
 
 .footer-right a {
@@ -362,5 +362,22 @@ footer {
   .consult-form button {
     width: 100%;
     margin-top: 10px;
+  }
+
+  section {
+    padding: 20px 10px; /* reduce side padding for very small screens */
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-left > *,
+  .footer-center > *,
+  .footer-right > * {
+    text-align: center; /* center text on smallest screens for readability */
   }
 }
