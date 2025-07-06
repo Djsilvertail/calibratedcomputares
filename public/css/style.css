@@ -46,18 +46,21 @@ header {
 }
 
 .header-left .logo {
-  height: 60px;
+  height: 300px;
 }
 
 .header-center a, .header-right a {
   color: white;
   text-decoration: none;
   margin: 0 15px;
-  font-size: 1.1rem;
+  font-size: 2.0rem;
+  font-weight: bold;
 }
 
 .header-center a:hover, .header-right a:hover {
   text-decoration: underline;
+  color: turquoise;
+  font-weight: bold;
 }
 
 /* Footer */
