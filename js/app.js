@@ -20,6 +20,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB error:', err));
 
+console.log('MongoDB URI at runtime:', process.env.MONGODB_URI);
+
 app.use(session({
   secret: 'your-super-secret',
   resave: false,
