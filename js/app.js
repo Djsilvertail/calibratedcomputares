@@ -23,10 +23,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 console.log('MongoDB URI at runtime:', process.env.MONGODB_URI);
 
 app.use(session({
-  secret: 'your-super-secret',
+  secret: process.env.SESSION_SECRET || 'your-super-secret',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/calibrated-auth' }),
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   cookie: { maxAge: 1000 * 60 * 60 }
 }));
 
