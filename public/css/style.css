@@ -6,7 +6,9 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 20px 0;
 }
 
@@ -46,18 +48,21 @@ header {
 }
 
 .header-left .logo {
-  height: 300px;
+  height: 200px;
+  width: 200px;
 }
 
-.header-center a, .header-right a {
+.header-center a,
+.header-right a {
   color: white;
   text-decoration: none;
   margin: 0 15px;
-  font-size: 2.0rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
-.header-center a:hover, .header-right a:hover {
+.header-center a:hover,
+.header-right a:hover {
   text-decoration: underline;
   color: turquoise;
   font-weight: bold;
@@ -72,51 +77,51 @@ footer {
 
 .footer-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: auto;
-  text-align: left;
-}
-
-.footer-left, .footer-center, .footer-right {
-  flex: 1 1 300px;
-  margin: 10px;
-}
-
-.footer-left input, .footer-left textarea {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  border: none;
-  border-radius: 4px;
-}
-
-.footer-left button {
-  padding: 10px 20px;
-  background-color: #16a085;
-  border: none;
-  border-radius: 4px;
+  align-items: flex-start;
+  background-color: #1abc9c; /* your turquoise background */
   color: white;
-  cursor: pointer;
+  padding: 40px 20px;
+  flex-wrap: wrap; /* ensures responsiveness on small screens */
 }
 
-.footer-left button:hover {
-  background-color: #149174;
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+  min-width: 200px; /* prevents collapse on mobile */
 }
 
-.social-links a {
+/* Center the contact info block */
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers the block horizontally */
+  text-align: center;  /* centers the text inside */
+}
+
+/* Center trademark & socials within right column, but keep the column aligned right */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers items within the right column */
+  text-align: center;  /* centers text inside */
+  margin-right: 20px;  /* adds spacing from page edge */
+}
+
+.footer-right a {
   color: white;
-  text-decoration: none;
   margin: 0 5px;
+  text-decoration: none;
 }
 
-.social-links a:hover {
+.footer-right a:hover {
   text-decoration: underline;
 }
 
 /* Services / Reviews / Portfolio */
-.review-row, .service-content {
+.review-row,
+.service-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -128,7 +133,8 @@ footer {
   flex-direction: row-reverse;
 }
 
-.review-image img, .service-image img {
+.review-image img,
+.service-image img {
   width: 250px;
   height: 250px;
   object-fit: cover;
@@ -136,7 +142,8 @@ footer {
   margin: 0 20px;
 }
 
-.review-text, .service-info {
+.review-text,
+.service-info {
   flex: 1;
   min-width: 250px;
   padding: 20px;
@@ -154,14 +161,17 @@ footer {
   margin-top: 10px;
 }
 
-.review-form, .consult-form {
+.review-form,
+.consult-form {
   max-width: 600px;
   margin: auto;
   text-align: left;
 }
 
-.review-form input, .review-form textarea,
-.consult-form input, .consult-form textarea {
+.review-form input,
+.review-form textarea,
+.consult-form input,
+.consult-form textarea {
   width: 100%;
   padding: 8px;
   margin: 10px 0;
@@ -169,7 +179,8 @@ footer {
   border: 1px solid #ccc;
 }
 
-.review-form button, .consult-form button {
+.review-form button,
+.consult-form button {
   padding: 10px 20px;
   background-color: #1abc9c;
   border: none;
@@ -178,7 +189,8 @@ footer {
   cursor: pointer;
 }
 
-.review-form button:hover, .consult-form button:hover {
+.review-form button:hover,
+.consult-form button:hover {
   background-color: #16a085;
 }
 
@@ -227,32 +239,41 @@ footer {
 
 /* Responsive styles */
 @media (max-width: 900px) {
-  .header-container, .footer-container {
+  .header-container,
+  .footer-container {
     flex-direction: column;
     text-align: center;
   }
 
-  .header-left, .header-center, .header-right,
-  .footer-left, .footer-center, .footer-right {
+  .header-left,
+  .header-center,
+  .header-right,
+  .footer-left,
+  .footer-center,
+  .footer-right {
     margin: 10px 0;
   }
 
-  .header-center a, .header-right a {
+  .header-center a,
+  .header-right a {
     display: inline-block;
     margin: 10px 10px;
   }
 
-  .review-row, .service-content {
+  .review-row,
+  .service-content {
     flex-direction: column;
   }
 
-  .review-image img, .service-image img {
+  .review-image img,
+  .service-image img {
     width: 70%;
     height: auto;
     margin-bottom: 20px;
   }
 
-  .review-text, .service-info {
+  .review-text,
+  .service-info {
     text-align: center;
   }
 }
@@ -262,19 +283,26 @@ footer {
     height: 50px;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-size: 1.4rem;
   }
 
-  .review-quote, .review-author, .service-info p {
+  .review-quote,
+  .review-author,
+  .service-info p {
     font-size: 1rem;
   }
 
-  .review-image img, .service-image img {
+  .review-image img,
+  .service-image img {
     width: 90%;
   }
 
-  .btn, .review-form button, .consult-form button {
+  .btn,
+  .review-form button,
+  .consult-form button {
     width: 100%;
     margin-top: 10px;
   }
