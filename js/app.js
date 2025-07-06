@@ -75,7 +75,7 @@ app.post('/contact', async (req, res) => {
     await transporter.sendMail(mailOptions);
 
     console.log(`Contact form email sent from ${email}`);
-    res.send('<h1>Thank you for contacting me!</h1><p>Your message has been sent successfully.</p><a href="/">Back to home</a>');
+    res.redirect('/?contact=success'); // 👈 redirect to home page on success
   } catch (err) {
     console.error('Error sending contact email:', err);
     res.status(500).send('<h1>Oops!</h1><p>Something went wrong. Please try again later.</p><a href="/">Back to home</a>');

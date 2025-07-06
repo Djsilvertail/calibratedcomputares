@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Home - Calibrated Computares</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <%- include('partials/header') %>
+  <head>
+    <title>Home - Calibrated Computares</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('partials/header') %>
 
-  <section>
-    <img src="/images/home-pic.png" alt="Calibrated Computares">
-    <h2>At Calibrated Computers, No job is too big or too small, I can do it all!</h2>
-  </section>
+    <% if (req.query.contact === 'success') { %>
+    <div class="contact-success">
+      Thank you! Your message has been sent successfully.
+    </div>
+    <% } %>
 
-  <%- include('partials/footer') %>
-</body>
+    <section>
+      <h1>Welcome to Calibrated Computares</h1>
+      <img src="/images/home-pic.png" alt="Calibrated Computares">
+      <h2>At Calibrated Computers, No job is too big or too small, I can do it
+        all!</h2>
+    </section>
+
+    <%- include('partials/footer') %>
+  </body>
 </html>
