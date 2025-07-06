@@ -91,85 +91,59 @@ footer {
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch; /* makes right section stretch fully for bottom alignment */
+  flex-wrap: wrap;
   background-color: #1abc9c;
   color: white;
   padding: 40px 20px;
-  flex-wrap: wrap;
 }
 
 .footer-left,
 .footer-center,
 .footer-right {
   flex: 1;
-  min-width: 200px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* center each section in its column horizontally */
 }
 
-/* Align content inside each section to the left */
-.footer-left > *,
-.footer-center > *,
-.footer-right > * {
+/* LEFT: Contact Me form aligned left */
+.footer-left h3,
+.footer-left form {
   text-align: left;
-  width: 100%; /* ensures left-aligned content fills the column */
 }
 
-/* Optional: consistent spacing between elements */
-.footer-left p,
-.footer-center p,
-.footer-right p {
-  margin: 5px 0;
+.footer-left input,
+.footer-left textarea,
+.footer-left button {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-.footer-right a {
-  color: white;
-  margin: 0 5px;
-  text-decoration: none;
-}
-
-.footer-right a:hover {
-  text-decoration: underline;
-}
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  background-color: #1abc9c; /* your turquoise background */
-  color: white;
-  padding: 40px 20px;
-  flex-wrap: wrap; /* ensures responsiveness on small screens */
-}
-
-.footer-left,
-.footer-center,
-.footer-right {
-  flex: 1;
-  min-width: 200px; /* prevents collapse on mobile */
-}
-
-/* Center the contact info block */
+/* CENTER: Contact info aligned left */
 .footer-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centers the block horizontally */
-  text-align: center; /* centers the text inside */
+  justify-content: center;
+  text-align: left;
 }
 
-/* Center trademark & socials within right column, but keep the column aligned right */
+/* RIGHT: Social links at top, trademark at bottom */
 .footer-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centers items within the right column */
-  text-align: center; /* centers text inside */
-  margin-right: 20px; /* adds spacing from page edge */
+  justify-content: space-between; /* pushes socials to top, trademark to bottom */
+  text-align: left;
+}
+
+.footer-right .social-links {
+  margin-bottom: 10px;
+}
+
+.footer-right .trademark {
+  align-self: flex-end; /* aligns trademark to bottom right */
 }
 
 .footer-right a {
   color: white;
-  margin: 0 5px;
   text-decoration: none;
+  margin: 0 5px;
 }
 
 .footer-right a:hover {
@@ -374,7 +348,7 @@ footer {
     align-items: center;
     text-align: center;
   }
-  
+
   .footer-left > *,
   .footer-center > *,
   .footer-right > * {

@@ -21,14 +21,21 @@
       </div>
       <% }); %>
     </section>
-    <section>
-      <h3>Leave a Review</h3>
-      <form action="/reviews" method="POST" class="review-form">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <textarea name="text" placeholder="Your Review" required></textarea><br>
-        <button type="submit">Submit Review</button>
-      </form>
-    </section>
+<% if (req.session && req.session.user) { %>
+  <section>
+    <h3>Leave a Review</h3>
+    <form action="/reviews" method="POST" class="review-form">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <textarea name="text" placeholder="Your Review" required></textarea><br>
+      <button type="submit">Submit Review</button>
+    </form>
+  </section>
+<% } else { %>
+  <section>
+    <p>Please <a href="/login">log in</a> to leave a review.</p>
+  </section>
+<% } %>
+
 
     <%- include('partials/footer') %>
   </body>

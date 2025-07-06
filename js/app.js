@@ -48,14 +48,23 @@ app.get('/', (req, res) => {
 });
 app.get('/about', (req, res) => res.render('about'));
 app.get('/services', (req, res) => res.render('services'));
-app.get('/reviews', (req, res) => res.render('reviews', { reviews }));
+app.get('/reviews', async (req, res) => {
+  const fetchedReviews = await Review.find(); // or however you fetch reviews
+  res.render('reviews', { reviews: fetchedReviews, req });
+});
+
 
 // Reviews submission
 app.post('/reviews', (req, res) => {
+  if (!req.session || !req.session.user) {
+    return res.status(401).send('Unauthorized: You must be logged in to leave a review.');
+  }
+
   const { name, text } = req.body;
-  reviews.push({ customer: name, text, image: "/images/default-review.jpg" });
+  // Save the review to your database
   res.redirect('/reviews');
 });
+
 
 // Contact form with Nodemailer
 app.post('/contact', async (req, res) => {
