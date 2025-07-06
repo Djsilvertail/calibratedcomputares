@@ -5,7 +5,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
-const User = require('./models/User');
+const User = require('../models/User');
 
 dotenv.config();
 const app = express();
