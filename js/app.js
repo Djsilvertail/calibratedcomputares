@@ -64,8 +64,14 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => res.render('about'));
 app.get('/services', (req, res) => res.render('services'));
 app.get('/reviews', async (req, res) => {
-  const dbReviews = await Review.find().sort({ createdAt: -1 }); // show latest first
-  res.render('reviews', { reviews: dbReviews, req });
+  try {
+    const dbReviews = await Review.find().sort({ createdAt: -1 });
+    const allReviews = [...starterReviews, ...dbReviews]; // combine starter + fetched reviews
+    res.render('reviews', { reviews: allReviews, req });
+  } catch (err) {
+    console.error('Error fetching reviews:', err);
+    res.render('reviews', { reviews: starterReviews, req, error: 'Unable to load user reviews. Showing starter reviews only.' });
+  }
 });
 
 
