@@ -412,6 +412,23 @@ footer {
   }
 }
 
+.register-prompt {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-prompt a {
+  color: #1abc9c;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.register-prompt a:hover {
+  color: #16a085;
+}
+
 @media (max-width: 600px) {
   .header-left .logo {
     height: 50px;
