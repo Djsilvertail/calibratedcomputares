@@ -120,16 +120,23 @@ footer {
   margin-bottom: 10px;
 }
 
-/* CENTER: Contact info aligned left */
 .footer-center {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;  /* keeps text left-aligned */
   text-align: left;
+  padding-left: 40px;       /* shift center section a bit right */
 }
 
-/* RIGHT: Social links at top, trademark at bottom */
+/* Right section: social links aligned right, trademark stays below */
 .footer-right {
-  justify-content: space-between; /* pushes socials to top, trademark to bottom */
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  /* align right within right section */
+  text-align: right;
+  justify-content: space-between;
+  min-height: 150px;      /* ensures space for social links + trademark */
 }
 
 .footer-right .social-links {
@@ -137,7 +144,7 @@ footer {
 }
 
 .footer-right .trademark {
-  align-self: flex-end; /* aligns trademark to bottom right */
+  align-self: flex-end;   /* ensures trademark sits bottom right */
 }
 
 .footer-right a {
