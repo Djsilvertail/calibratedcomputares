@@ -37,9 +37,24 @@ app.use((req, res, next) => {
 
 // Sample reviews for demonstration
 const reviews = [
-  { customer: "Jayna Forgie", text: "Dana has been a lifesaver...", image: "/images/review1.jpg" },
-  { customer: "Sam Reynolds", text: "Excellent service...", image: "/images/review2.jpg" },
-  { customer: "Alex Kim", text: "Professional, efficient...", image: "/images/review3.jpg" }
+  {
+    customer: "Jayna Forgie",
+    text: "Dana has been a lifesaver when it comes to all my computer issues. He’s patient, professional, and always goes above and beyond.",
+    image: "/images/review1.jpg",
+    rating: 5
+  },
+  {
+    customer: "Sam Reynolds",
+    text: "Excellent service and quick turnaround! My website looks amazing, and I couldn’t be happier with the process from start to finish.",
+    image: "/images/review2.jpg",
+    rating: 5
+  },
+  {
+    customer: "Alex Kim",
+    text: "Professional, efficient, and incredibly knowledgeable. Dana handled everything seamlessly and delivered exactly what I needed.",
+    image: "/images/review3.jpg",
+    rating: 5
+  }
 ];
 
 // Public pages
@@ -49,20 +64,27 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => res.render('about'));
 app.get('/services', (req, res) => res.render('services'));
 app.get('/reviews', async (req, res) => {
-  const fetchedReviews = await Review.find(); // or however you fetch reviews
-  res.render('reviews', { reviews: fetchedReviews, req });
+  const dbReviews = await Review.find().sort({ createdAt: -1 }); // show latest first
+  res.render('reviews', { reviews: dbReviews, req });
 });
 
 
 // Reviews submission
-app.post('/reviews', (req, res) => {
+app.post('/reviews', async (req, res) => {
   if (!req.session || !req.session.user) {
     return res.status(401).send('Unauthorized: You must be logged in to leave a review.');
   }
 
-  const { name, text } = req.body;
-  // Save the review to your database
-  res.redirect('/reviews');
+  const { name, text, rating } = req.body;
+  try {
+    const newReview = new Review({ name, text, rating });
+    await newReview.save();
+    res.redirect('/reviews');
+  } catch (err) {
+    console.error('Error saving review:', err);
+    res.status(500).send('There was an error saving your review. Please try again.');
+  }
+
 });
 
 

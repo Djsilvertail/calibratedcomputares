@@ -361,6 +361,16 @@ footer {
   font-size: 1.1rem;
 }
 
+.review-rating {
+  font-size: 1.2rem;
+  color: #f39c12; /* gold stars */
+  margin-top: 10px;
+}
+
+.review-rating .empty {
+  color: #ccc; /* gray for empty stars */
+}
+
 /* Responsive styles */
 @media (max-width: 900px) {
   .header-container,
