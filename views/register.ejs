@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head><title>Register</title></head>
-<body>
-  <h1>Register</h1>
-  <form action="/register" method="POST">
-    <input name="username" placeholder="Username" required><br>
-    <input name="password" type="password" placeholder="Password" required><br>
-    <button type="submit">Register</button>
-  </form>
-  <p>Already registered? <a href="/login">Login</a></p>
-</body>
+  <head>
+    <title>Register - Calibrated Computares</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+    <section>
+      <h1>Register</h1>
+      <% if (typeof error !== 'undefined') { %>
+      <div class="register-error"><%= error %></div>
+      <% } %>
+      <form action="/register" method="POST" class="register-form">
+        <input name="username" type="email" placeholder="Your Email"
+          required><br>
+
+        <input name="password" type="password" placeholder="Password"
+          required><br>
+        <input name="confirmPassword" type="password"
+          placeholder="Confirm Password" required><br>
+        <button type="submit" class="btn">Register</button>
+      </form>
+
+      <p>Already registered? <a href="/login">Login</a></p>
+    </section>
+
+    <%- include('partials/footer') %>
+  </body>
 </html>

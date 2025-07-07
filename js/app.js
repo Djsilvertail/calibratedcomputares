@@ -129,35 +129,58 @@ servicePaths.forEach(service => {
 // Authentication routes
 app.get('/register', (req, res) => res.render('register'));
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, confirmPassword } = req.body;
   try {
-    const hashed = await bcrypt.hash(password, 12);
-    const user = new User({ username, password: hashed });
+    if (password !== confirmPassword) {
+      return res.render('register', { req, error: 'Passwords do not match.' });
+    }
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.render('register', { req, error: 'Username already taken.' });
+    }
+    const hash = await bcrypt.hash(password, 12);
+    const user = new User({ username, password: hash });
     await user.save();
-    req.session.userId = user._id;
-    res.redirect('/');
+    req.session.user = user._id; // automatically log user in
+
+    // Send welcome email
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: username, // assuming username is the email address
+      subject: 'Welcome to Calibrated Computares!',
+      text: `Hi ${username},\n\nThank you for registering at Calibrated Computares! We're excited to have you onboard.\n\nYou can now log in anytime to book consultations or leave reviews.\n\nBest,\nDana Llewellyn`
+    });
+
+    console.log(`Welcome email sent to ${username}`);
+
+    res.redirect('/?register=success');
   } catch (err) {
-    console.error(err);
-    res.redirect('/register');
+    console.error('Error registering user:', err);
+    res.render('register', { req, error: 'An unexpected error occurred. Please try again.' });
   }
 });
 
 app.get('/login', (req, res) => res.render('login'));
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  try {
-    const user = await User.findOne({ username });
-    if (!user) return res.redirect('/login');
-
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.redirect('/login');
-
-    req.session.userId = user._id;
-    res.redirect('/');
-  } catch (err) {
-    console.error(err);
-    res.redirect('/login');
+  const user = await User.findOne({ username });
+  if (!user) {
+    return res.render('login', { req, error: 'Invalid username or password.' });
   }
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) {
+    return res.render('login', { req, error: 'Invalid username or password.' });
+  }
+  req.session.user = user._id;
+  res.redirect('/');
 });
 
 app.get('/logout', (req, res) => {

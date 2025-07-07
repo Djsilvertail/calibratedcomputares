@@ -9,6 +9,9 @@
 
   <section>
     <h2 class="bold">Login to Your Account</h2>
+    <% if (typeof error !== 'undefined') { %>
+      <div class="login-error"><%= error %></div>
+    <% } %>
     <form action="/login" method="POST" class="login-form">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required><br>

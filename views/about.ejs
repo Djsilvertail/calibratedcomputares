@@ -1,23 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>About - Calibrated Computares</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <%- include('partials/header') %>
+  <head>
+    <title>About Calibrated Computares</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('partials/header') %>
 
-  <section>
-    <h2 class="bold">All about Calibrated Computares</h2>
-    <img src="/images/profile.png" alt="Profile picture">
-    <p>I was born and raised in Canada. I have always found computers fascinating but didn’t decide to become a computer coder until I played Minecraft in my late twenties. Running my own Minecraft server gave me a small taste of coding, and from there I started my journey. My journey includes schooling at BYU-I, personal studies from websites like Codecademy, and a lot of personal perseverance.</p>
-  </section>
+    <section class="about-container">
+      <h1 class="bold">About Calibrated Computares</h1>
 
-  <section>
-    <h2 class="bold">Calibrated Computares' Mission Statement</h2>
-    <p>I am Canadian-based and pride myself on strong work ethics. I always strive for excellence and only use AI when it is appropriate and beneficial for my clients.</p>
-  </section>
+      <div class="about-intro">
+        <img src="/images/profilepic.jpg" alt="Dana Llewellyn profile picture"
+          class="profile-pic">
+        <p>
+          I was born and raised in Canada, where I developed a lifelong
+          fascination with computers and technology. My journey into
+          professional coding began unexpectedly in my late twenties, when
+          running my own Minecraft server introduced me to the basics of
+          programming and sparked a passion for building and problem-solving.
+        </p>
+      </div>
 
-  <%- include('partials/footer') %>
-</body>
+      <p>
+        From that spark, I embarked on a dedicated journey to become a skilled
+        developer. This included formal studies at Brigham Young
+        University–Idaho, extensive self-directed learning through platforms
+        like Codecademy, and countless hours honing my craft through personal
+        projects. Through perseverance and continuous learning, I founded
+        Calibrated Computares — a business built on a commitment to quality,
+        creativity, and exceptional service.
+      </p>
+
+      <p>
+        At Calibrated Computares, we offer comprehensive IT solutions tailored
+        to meet your unique needs. Our services include:
+      </p>
+
+      <ul class="about-services">
+        <li><strong>Web Design & Development</strong> — from elegant personal
+          websites to robust e-commerce platforms, with packages suitable for
+          individuals, small businesses, and growing enterprises.</li>
+        <li><strong>Computer Tech Support</strong> — professional
+          troubleshooting, maintenance, and optimization to keep your systems
+          running smoothly.</li>
+        <li><strong>Ongoing Maintenance Plans</strong> — monthly or yearly
+          packages to ensure your website and systems stay updated, secure, and
+          performing at their best.</li>
+        <li><strong>Social Media Management</strong> — strategic packages
+          designed to enhance your online presence, engage your audience, and
+          grow your brand.</li>
+      </ul>
+
+      <p>
+        Whether you’re looking for a captivating website, reliable tech support,
+        or help building your brand online, I’m dedicated to providing
+        professional, personalized service to help you succeed.
+      </p>
+    </section>
+
+    <%- include('partials/footer') %>
+  </body>
 </html>
