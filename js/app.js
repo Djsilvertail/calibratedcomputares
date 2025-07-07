@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const User = require('../models/User');
+const Review = require('../models/Review'); // adjust path as needed
 
 dotenv.config();
 const app = express();
@@ -36,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 // Sample reviews for demonstration
-const reviews = [
+const starterReviews = [
   {
     customer: "Jayna Forgie",
     text: "Dana has been a lifesaver when it comes to all my computer issues. He’s patient, professional, and always goes above and beyond.",
