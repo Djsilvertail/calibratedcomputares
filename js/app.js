@@ -62,8 +62,12 @@ const starterReviews = [
 app.get('/', (req, res) => {
   res.render('index', { req });
 });
-app.get('/about', (req, res) => res.render('about'));
-app.get('/services', (req, res) => res.render('services'));
+app.get('/about', (req, res) => {
+  res.render('about', { req });
+});
+app.get('/services', (req, res) => 
+  res.render('services', { req }));
+
 app.get('/reviews', async (req, res) => {
   try {
     const dbReviews = await Review.find().sort({ createdAt: -1 });
