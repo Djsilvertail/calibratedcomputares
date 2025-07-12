@@ -200,17 +200,32 @@ app.post('/register', async (req, res) => {
 app.get('/login', (req, res) => res.render('login'));
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  console.log('Login attempt with:', username);
-  if (!user) {
-    return res.render('login', { req, error: 'Invalid username or password.' });
+  console.log(`Login attempt with: ${username}`);
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      console.log('User not found in DB');
+      return res.render('login', { error: 'Invalid email or password.' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      console.log('Password does not match');
+      return res.render('login', { error: 'Invalid email or password.' });
+    }
+
+    req.session.user = {
+      _id: user._id,
+      username: user.username
+    };
+
+    console.log(`Login successful for user: ${user.username}`);
+    res.redirect('/');
+  } catch (err) {
+    console.error('Login error:', err);
+    res.status(500).render('login', { error: 'An error occurred during login.' });
   }
-  const match = await bcrypt.compare(password, user.password);
-  if (!match) {
-    return res.render('login', { req, error: 'Invalid username or password.' });
-  }
-  req.session.user = user._id;
-  res.redirect('/');
 });
 
 app.get('/logout', (req, res) => {
