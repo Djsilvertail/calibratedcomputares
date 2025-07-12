@@ -201,6 +201,7 @@ app.get('/login', (req, res) => res.render('login'));
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
+  console.log('Login attempt with:', username);
   if (!user) {
     return res.render('login', { req, error: 'Invalid username or password.' });
   }
