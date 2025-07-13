@@ -1,70 +1,64 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Services - Calibrated Computares</title>
-  <link rel="stylesheet" href="../public/css/style.css">">
-</head>
-<body>
-  <%- include('partials/header') %>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
 
-  <section>
-    <h2 class="bold">Our Services</h2>
+    <section>
+      <h1>Services Offered by Calibrated Computares</h1>
 
-    <% if (!currentUser) { %>
-      <p class="login-prompt">Please <a href="/login">sign in</a> to view detailed service information and book a consultation.</p>
-    <% } %>
-
-    <h3>Web Design Tiers</h3>
-    <ul>
-      <% if (currentUser) { %>
-        <li><a href="../services/web-basic">Basic Web Design Package</a></li>
-        <li><a href="/services/web-standard">Standard Web Design Package</a></li>
-        <li><a href="/services/web-premium">Premium Web Design Package</a></li>
-      <% } else { %>
-        <li>Basic Web Design Package</li>
-        <li>Standard Web Design Package</li>
-        <li>Premium Web Design Package</li>
+      <% if (!currentUser) { %>
+      <p class="login-prompt">Please log in to view details and book a
+        consultation for any service.</p>
       <% } %>
-    </ul>
 
-    <h3>Computer Tech Tiers</h3>
-    <ul>
-      <% if (currentUser) { %>
-        <li><a href="/services/tech-basic">Basic Tech Support</a></li>
-        <li><a href="/services/tech-standard">Standard Tech Support</a></li>
-        <li><a href="/services/tech-premium">Premium Tech Support</a></li>
-      <% } else { %>
-        <li>Basic Tech Support</li>
-        <li>Standard Tech Support</li>
-        <li>Premium Tech Support</li>
-      <% } %>
-    </ul>
+      <h2>Web Design Packages</h2>
+      <ul class="services-list">
+        <li><% if (currentUser) { %><a href="/services/basic-web">Basic Web
+            Design</a><% } else { %>Basic Web Design<% } %></li>
+        <li><% if (currentUser) { %><a href="/services/pro-web">Professional Web
+            Design</a><% } else { %>Professional Web Design<% } %></li>
+        <li><% if (currentUser) { %><a href="/services/custom-web">Custom Web
+            Design</a><% } else { %>Custom Web Design<% } %></li>
+      </ul>
 
-    <h3>Maintenance Packages</h3>
-    <ul>
-      <% if (currentUser) { %>
-        <li><a href="/services/maintenance-monthly">Monthly Maintenance</a></li>
-        <li><a href="/services/maintenance-yearly">Yearly Maintenance</a></li>
-      <% } else { %>
-        <li>Monthly Maintenance</li>
-        <li>Yearly Maintenance</li>
-      <% } %>
-    </ul>
+      <h2>Computer Tech Support</h2>
+      <ul class="services-list">
+        <li><% if (currentUser) { %><a href="/services/basic-tech">Basic Tech
+            Support</a><% } else { %>Basic Tech Support<% } %></li>
+        <li><% if (currentUser) { %><a href="/services/advanced-tech">Advanced
+            Tech Support</a><% } else { %>Advanced Tech Support<% } %></li>
+        <li><% if (currentUser) { %><a href="/services/emergency-tech">Emergency
+            Tech Support</a><% } else { %>Emergency Tech Support<% } %></li>
+      </ul>
 
-    <h3>Social Media Packages</h3>
-    <ul>
-      <% if (currentUser) { %>
-        <li><a href="/services/social-starter">Starter Social Package</a></li>
-        <li><a href="/services/social-growth">Growth Social Package</a></li>
-        <li><a href="/services/social-elite">Elite Social Package</a></li>
-      <% } else { %>
-        <li>Starter Social Package</li>
-        <li>Growth Social Package</li>
-        <li>Elite Social Package</li>
-      <% } %>
-    </ul>
-  </section>
+      <h2>Maintenance Packages</h2>
+      <ul class="services-list">
+        <li><% if (currentUser) { %><a
+            href="/services/monthly-maintenance">Monthly Maintenance</a><% }
+          else { %>Monthly Maintenance<% } %></li>
+        <li><% if (currentUser) { %><a
+            href="/services/yearly-maintenance">Yearly Maintenance</a><% } else
+          { %>Yearly Maintenance<% } %></li>
+      </ul>
 
-  <%- include('partials/footer') %>
-</body>
+      <h2>Social Media Management</h2>
+      <ul class="services-list">
+        <li><% if (currentUser) { %><a href="/services/basic-social">Basic
+            Social Package</a><% } else { %>Basic Social Package<% } %></li>
+        <li><% if (currentUser) { %><a href="/services/pro-social">Professional
+            Social Package</a><% } else { %>Professional Social Package<% }
+          %></li>
+        <li><% if (currentUser) { %><a href="/services/custom-social">Custom
+            Social Package</a><% } else { %>Custom Social Package<% } %></li>
+      </ul>
+    </section>
+
+    <%- include('partials/footer') %>
+  </body>
 </html>

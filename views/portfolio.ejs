@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Portfolio - Calibrated Computares</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <%- include('partials/header') %>
+  <head>
+    <title>Portfolio - Calibrated Computares</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('partials/header') %>
 
-  <section>
-    <h2 class="bold">My Portfolio</h2>
-    <div class="portfolio-section">
-      <div class="portfolio-item">
-        <img src="/images/portfolio1.jpg" alt="Project 1">
-        <p>Website redesign for Client A: modern, responsive site with improved UX.</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="/images/portfolio2.jpg" alt="Project 2">
-        <p>Custom e-commerce platform for Client B with WooCommerce integration.</p>
-      </div>
-      <!-- Add more portfolio items as needed -->
-    </div>
-  </section>
+    <section class="section">
+      <h1 class="page-title">My Portfolio</h1>
 
-  <%- include('partials/footer') %>
-</body>
+      <div class="portfolio-section">
+        <div class="portfolio-item">
+          <img src="/images/portfolio1.jpg" alt="Website Redesign">
+          <h3>Website Redesign</h3>
+          <p>A full responsive overhaul for a small business, focused on
+            performance and mobile optimization.</p>
+        </div>
+
+        <div class="portfolio-item">
+          <img src="/images/portfolio2.jpg" alt="Online Store Setup">
+          <h3>Online Store Setup</h3>
+          <p>Created a WooCommerce-integrated shop with custom branding, cart
+            features, and client login.</p>
+        </div>
+
+        <div class="portfolio-item">
+          <img src="/images/portfolio3.jpg" alt="Custom CMS">
+          <h3>Custom CMS</h3>
+          <p>Developed a lightweight, user-friendly CMS for a local content
+            creator using Node.js and MongoDB.</p>
+        </div>
+      </div>
+    </section>
+
+    <%- include('partials/footer') %>
+  </body>
 </html>

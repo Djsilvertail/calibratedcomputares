@@ -1,4 +1,6 @@
-/* Base styles */
+/* ==================================================
+   GLOBAL STYLES
+================================================== */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -13,9 +15,10 @@ h3 {
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 2.8rem;
+  color: #1abc9c;
 }
+
 h2 {
   font-size: 2rem;
   color: #555;
@@ -35,16 +38,19 @@ img {
 }
 
 section {
-  padding: 20px;
+  padding: 40px 20px;
   max-width: 1000px;
   margin: auto;
+  text-align: center;
 }
 
 .bold {
   font-weight: bold;
 }
 
-/* Header */
+/* ==================================================
+   HEADER
+================================================== */
 header {
   background-color: #1abc9c;
   color: white;
@@ -62,8 +68,9 @@ header {
 }
 
 .header-left .logo {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: auto;
+  max-width: 150px;
 }
 
 .header-center a,
@@ -71,31 +78,33 @@ header {
   color: white;
   text-decoration: none;
   margin: 0 15px;
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
-.header-center a:hover,
-.header-right a:hover {
-  text-decoration: underline;
+.header-center a:hover {
   color: turquoise;
-  font-weight: bold;
+  text-decoration: underline;
 }
 
-/* Footer */
+.header-right a:hover {
+  color: teal;
+  text-decoration: underline;
+}
+
+/* ==================================================
+   FOOTER
+================================================== */
 footer {
   background-color: #1abc9c;
   color: white;
-  padding: 20px;
+  padding: 40px 20px;
 }
+
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: stretch; /* makes right section stretch fully for bottom alignment */
   flex-wrap: wrap;
-  background-color: #1abc9c;
-  color: white;
-  padding: 40px 20px;
 }
 
 .footer-left,
@@ -103,40 +112,52 @@ footer {
 .footer-right {
   flex: 1;
   min-width: 250px;
+  padding: 10px;
+}
+
+.footer-left form {
   display: flex;
   flex-direction: column;
 }
 
-/* LEFT: Contact Me form aligned left */
-.footer-left h3,
-.footer-left form {
-  text-align: left;
+.footer-left input,
+.footer-left textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
 }
 
-.footer-left input,
-.footer-left textarea,
 .footer-left button {
-  width: 100%;
-  margin-bottom: 10px;
+  padding: 10px;
+  background-color: white;
+  color: #1abc9c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footer-left button:hover {
+  background-color: #f0f0f0;
 }
 
 .footer-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;  /* keeps text left-aligned */
+  align-items: flex-start;
   text-align: left;
-  padding-left: 40px;       /* shift center section a bit right */
+  padding-left: 40px;
 }
 
-/* Right section: social links aligned right, trademark stays below */
 .footer-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;  /* align right within right section */
-  text-align: right;
+  align-items: flex-end;
   justify-content: space-between;
-  min-height: 150px;      /* ensures space for social links + trademark */
+  text-align: right;
+  min-height: 150px;
 }
 
 .footer-right .social-links {
@@ -144,7 +165,8 @@ footer {
 }
 
 .footer-right .trademark {
-  align-self: flex-end;   /* ensures trademark sits bottom right */
+  align-self: flex-end;
+  font-size: 0.9rem;
 }
 
 .footer-right a {
@@ -157,7 +179,163 @@ footer {
   text-decoration: underline;
 }
 
-/* Services / Reviews / Portfolio */
+/* ==================================================
+   HOME PAGE
+================================================== */
+section img {
+  width: 80%;
+  max-width: 500px;
+  border-radius: 12px;
+  margin: 30px auto;
+}
+
+.alert {
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.1rem;
+  max-width: 800px;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.alert.error {
+  background-color: #fdecea;
+  color: #d93025;
+  border: 1px solid #f5c6cb;
+}
+
+/* ==================================================
+   ABOUT PAGE
+================================================== */
+.about-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: left;
+  line-height: 1.7;
+}
+
+.about-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1abc9c;
+  font-size: 2.5rem;
+}
+
+.about-intro {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.about-intro img.profile-pic {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #1abc9c;
+}
+
+.about-intro p,
+.about-container p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.about-services {
+  list-style: none;
+  padding: 0;
+}
+
+.about-services li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1.05rem;
+}
+
+/* ==================================================
+   LOGIN & REGISTER FORMS
+================================================== */
+.login-form,
+.register-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.login-form input,
+.register-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.login-form button,
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover,
+.register-form button:hover {
+  background-color: #16a085;
+}
+
+.login-error,
+.register-error {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.register-prompt {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-prompt a {
+  color: #1abc9c;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.register-prompt a:hover {
+  color: #16a085;
+}
+
+/* ==================================================
+   REVIEWS / SERVICES / PORTFOLIO
+================================================== */
 .review-row,
 .service-content {
   display: flex;
@@ -199,6 +377,16 @@ footer {
   margin-top: 10px;
 }
 
+.review-rating {
+  font-size: 1.2rem;
+  color: #f39c12;
+  margin-top: 10px;
+}
+
+.review-rating .empty {
+  color: #ccc;
+}
+
 .review-form,
 .consult-form {
   max-width: 600px;
@@ -236,146 +424,130 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
 
 .portfolio-item {
   width: 300px;
-  margin: 20px;
+  background: #f8f8f8;
+  padding: 15px;
+  border-radius: 10px;
   text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-item img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #1abc9c;
-  color: white;
+.page-title {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+}
+
+/* =======================
+   Services Page Specific
+========================== */
+
+.services-list {
+  margin: 20px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.services-list li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.services-list li a {
+  color: #1abc9c;
   text-decoration: none;
-  border-radius: 4px;
-}
-
-.btn:hover {
-  background-color: #16a085;
-}
-
-.login-prompt {
-  font-size: 1.2rem;
-  color: #e74c3c;
-  margin-bottom: 20px;
-}
-
-.login-prompt a {
-  color: #e74c3c;
   font-weight: bold;
+}
+
+.services-list li a:hover {
+  color: #16a085;
   text-decoration: underline;
 }
 
-.login-error {
-  background-color: #e74c3c;
-  color: white;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 400px;
-  border-radius: 8px;
-  text-align: center;
-}
+/* ============================= */
+/*     CONSULTATION FORM STYLES */
+/* ============================= */
 
-.register-error {
-  background-color: #e74c3c;
-  color: white;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 400px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.register-success {
-  background-color: #2ecc71; /* green for success */
-  color: white;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 600px;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 1.1em;
-}
-
-.about-intro {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.profile-pic {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.about-intro p {
-  flex: 1;
-  font-size: 1.1rem;
-  color: #444;
-}
-
-.about-container {
-  max-width: 900px;
-  margin: 40px auto;
-  text-align: left;
+.consult-form {
+  background-color: #f9f9f9;
   padding: 20px;
-  line-height: 1.8;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.about-container h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-  color: #333;
-}
-
-.about-container p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  color: #444;
-}
-
-.about-services {
-  list-style-type: disc;
-  padding-left: 40px;
-  margin-bottom: 30px;
-}
-
-.about-services li {
+.consult-form input[type="text"],
+.consult-form input[type="email"],
+.consult-form input[type="datetime-local"],
+.consult-form textarea {
+  width: 100%;
   margin-bottom: 15px;
-  font-size: 1.1rem;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.review-rating {
-  font-size: 1.2rem;
-  color: #f39c12; /* gold stars */
-  margin-top: 10px;
+.consult-form button {
+  width: 100%;
+  background-color: #1abc9c;
+  font-size: 1rem;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.review-rating .empty {
-  color: #ccc; /* gray for empty stars */
+.consult-form button:hover {
+  background-color: #16a085;
 }
 
-/* Responsive styles */
+/* Thank You Message */
+.thank-you-message {
+  max-width: 600px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.thank-you-message .btn {
+  margin-top: 20px;
+  background-color: #1abc9c;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.thank-you-message .btn:hover {
+  background-color: #16a085;
+}
+
+/* ==================================================
+   RESPONSIVE MEDIA QUERIES
+================================================== */
 @media (max-width: 900px) {
   .header-container,
-  .footer-container {
+  .footer-container,
+  .review-row,
+  .service-content {
     flex-direction: column;
+    text-align: center;
+  }
+
+  .review-text,
+  .service-info {
     text-align: center;
   }
 
@@ -387,46 +559,6 @@ footer {
   .footer-right {
     margin: 10px 0;
   }
-
-  .header-center a,
-  .header-right a {
-    display: inline-block;
-    margin: 10px 10px;
-  }
-
-  .review-row,
-  .service-content {
-    flex-direction: column;
-  }
-
-  .review-image img,
-  .service-image img {
-    width: 70%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .review-text,
-  .service-info {
-    text-align: center;
-  }
-}
-
-.register-prompt {
-  font-size: 1rem;
-  color: #333;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.register-prompt a {
-  color: #1abc9c;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.register-prompt a:hover {
-  color: #16a085;
 }
 
 @media (max-width: 600px) {
@@ -459,7 +591,7 @@ footer {
   }
 
   section {
-    padding: 20px 10px; /* reduce side padding for very small screens */
+    padding: 20px 10px;
   }
 
   .footer-left,
@@ -472,6 +604,14 @@ footer {
   .footer-left > *,
   .footer-center > *,
   .footer-right > * {
-    text-align: center; /* center text on smallest screens for readability */
+    text-align: center;
+  }
+
+  .consult-form {
+    padding: 15px;
+  }
+
+  .consult-form button {
+    font-size: 0.95rem;
   }
 }

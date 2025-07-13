@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Login - Calibrated Computares</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <%- include('partials/header') %>
+  <head>
+    <title>Login - Calibrated Computares</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('partials/header') %>
 
-  <section>
-    <h2 class="bold">Login to Your Account</h2>
-    <% if (typeof error !== 'undefined') { %>
+    <section>
+      <h2 class="bold">Login to Your Account</h2>
+      <% if (typeof error !== 'undefined') { %>
       <div class="login-error"><%= error %></div>
-    <% } %>
-    <form action="/login" method="POST" class="login-form">
-      <label for="username">Username (Email):</label>
-      <input type="text" id="username" name="username" required><br>
+      <% } %>
+      <form action="/login" method="POST" class="login-form">
+        <label for="username">Username (Email):</label>
+        <input type="text" id="username" name="username" required><br>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
 
-      <button type="submit" class="btn">Log In</button>
-    </form>
+        <button type="submit" class="btn">Log In</button>
+      </form>
 
-    <p class="register-prompt">
-      Don't have an account? <a href="/register">Register here</a>.
-    </p>
-  </section>
+      <p class="register-prompt">
+        Don't have an account? <a href="/register">Register here</a>.
+      </p>
+    </section>
 
-  <%- include('partials/footer') %>
-</body>
+    <%- include('partials/footer') %>
+    <script src="/js/login-validation.js"></script>
+  </body>
 </html>

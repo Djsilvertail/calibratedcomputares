@@ -7,8 +7,9 @@
   <body>
     <%- include('partials/header') %>
 
-    <section>
+    <section class="section">
       <h2 class="bold">What Our Customers Are Saying</h2>
+
       <% reviews.forEach((review, index) => { %>
       <div class="review-row <%= index % 2 === 1 ? 'reverse' : '' %>">
         <div class="review-text">
@@ -17,9 +18,9 @@
           <p class="review-rating">
             <% for (let i = 1; i <= 5; i++) { %>
             <% if (i <= review.rating) { %>
-            <span class="star">&#9733;</span> <!-- solid star -->
+            <span class="star">&#9733;</span>
             <% } else { %>
-            <span class="star empty">&#9734;</span> <!-- empty star -->
+            <span class="star empty">&#9734;</span>
             <% } %>
             <% } %>
           </p>
@@ -27,8 +28,9 @@
       </div>
       <% }); %>
     </section>
-    <% if (req.session && req.session.user) { %>
-    <section>
+
+    <% if (currentUser) { %>
+    <section class="section">
       <h3>Leave a Review</h3>
       <form action="/reviews" method="POST" class="review-form">
         <input type="text" name="name" placeholder="Your Name" required><br>
@@ -44,12 +46,11 @@
           <option value="1">★☆☆☆☆ (1)</option>
         </select><br>
 
-        <button type="submit">Submit Review</button>
+        <button type="submit" class="btn">Submit Review</button>
       </form>
-
     </section>
     <% } else { %>
-    <section>
+    <section class="section">
       <p>Please <a href="/login">log in</a> to leave a review.</p>
     </section>
     <% } %>

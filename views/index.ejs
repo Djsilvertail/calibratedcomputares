@@ -7,14 +7,27 @@
   <body>
     <%- include('partials/header') %>
 
-    <% if (req.query.register === 'success') { %>
-    <div class="register-success">Your registration has been successful.
-      Welcome!</div>
+    <% if (req.query.logout === 'success') { %>
+    <div class="alert info">
+      You’ve successfully logged out. Have a great day!
+    </div>
     <% } %>
 
     <% if (req.query.contact === 'success') { %>
-    <div class="contact-success">
+    <div class="alert success">
       Thank you! Your message has been sent successfully.
+    </div>
+    <% } %>
+
+    <% if (req.query.register === 'success') { %>
+    <div class="alert success">
+      Your account has been created!
+    </div>
+    <% } %>
+
+    <% if (req.query.login === 'success') { %>
+    <div class="alert success">
+      You’ve successfully logged in. Welcome back!
     </div>
     <% } %>
 

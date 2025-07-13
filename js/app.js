@@ -7,6 +7,8 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const User = require('../models/User');
 const Review = require('../models/Review'); // adjust path as needed
+const { body, validationResult } = require('express-validator');
+const Consultation = require('./models/Consultation');
 
 dotenv.config();
 const app = express();
@@ -65,8 +67,13 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about', { req });
 });
-app.get('/services', (req, res) => 
+app.get('/services', (req, res) =>
   res.render('services', { req }));
+
+app.get('/thank-you', (req, res) => {
+  res.render('thank-you');
+});
+
 
 app.get('/reviews', async (req, res) => {
   try {
@@ -100,31 +107,43 @@ app.post('/reviews', async (req, res) => {
 
 
 // Contact form with Nodemailer
-app.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body;
+app.post('/contact',
+  [
+    body('name').trim().notEmpty().withMessage('Name is required.'),
+    body('email').isEmail().withMessage('Valid email is required.'),
+    body('message').trim().notEmpty().withMessage('Message cannot be empty.')
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.warn('Validation failed:', errors.array());
+      return res.status(400).send('Invalid form data. Please check your inputs.');
+    }
 
-  try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
-    });
+    const { name, email, message } = req.body;
 
-    const mailOptions = {
-      from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_USER,
-      subject: `New Contact Form Submission from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-    };
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
+      });
 
-    await transporter.sendMail(mailOptions);
+      const mailOptions = {
+        from: `"${name}" <${email}>`,
+        to: process.env.EMAIL_USER,
+        subject: `New Contact Form Submission from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+      };
 
-    console.log(`Contact form email sent from ${email}`);
-    res.redirect('/?contact=success'); // 👈 redirect to home page on success
-  } catch (err) {
-    console.error('Error sending contact email:', err);
-    res.status(500).send('<h1>Oops!</h1><p>Something went wrong. Please try again later.</p><a href="/">Back to home</a>');
+      await transporter.sendMail(mailOptions);
+      console.log(`Contact form email sent from ${email}`);
+      res.redirect('/?contact=success');
+    } catch (err) {
+      console.error('Error sending contact email:', err);
+      res.status(500).send('Something went wrong. Please try again later.');
+    }
   }
-});
+);
 
 // Portfolio page (logged in users)
 app.get('/portfolio', (req, res) => {
@@ -133,15 +152,36 @@ app.get('/portfolio', (req, res) => {
 });
 
 // Booking consultation
-app.get('/book-consultation', (req, res) => {
-  if (!req.session.userId) return res.redirect('/login');
-  res.render('book-consultation');
+app.get('/book-consultations', (req, res) => {
+  if (!req.session.user) return res.redirect('/login');
+  const service = req.query.service || '';
+  const email = req.session.user?.username || '';
+  res.render('book-consultation', { service, email });
 });
 
-app.post('/book-consultation', (req, res) => {
-  const { name, email, service, details } = req.body;
-  console.log(`Consultation requested by ${name} for ${service}.`);
-  res.send('<h1>Thank you for booking!</h1><p>I will contact you shortly.</p><a href="/">Back to Home</a>');
+app.post('/book-consultations', async (req, res) => {
+  const { name, email, service, datetime, notes } = req.body;
+  try {
+    await new Consultation({ name, email, service, datetime, notes }).save();
+
+    // Email it
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
+    });
+    await transporter.sendMail({
+      from: `"${name}" <${email}>`,
+      to: process.env.EMAIL_USER,
+      subject: `New Consultation Booking - ${service}`,
+      text: `Name: ${name}\nEmail: ${email}\nService: ${service}\nWhen: ${datetime}\nNotes: ${notes}`
+    });
+
+    res.redirect('/thank-you');
+;
+  } catch (err) {
+    console.error('Consultation error:', err);
+    res.status(500).send('Something went wrong booking the consultation.');
+  }
 });
 
 // Service subpages
@@ -225,7 +265,8 @@ app.post('/login', async (req, res) => {
     };
 
     console.log(`Login successful for user: ${user.username}`);
-    res.redirect('/');
+    res.redirect('/?login=success');
+
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).render('login', { error: 'An error occurred during login.' });
@@ -233,10 +274,8 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-  req.session.destroy(err => {
-    if (err) return res.redirect('/');
-    res.clearCookie('connect.sid');
-    res.redirect('/login');
+  req.session.destroy(() => {
+    res.redirect('/?logout=success');
   });
 });
 
