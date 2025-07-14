@@ -1,10 +1,34 @@
+// models/Consultation.js
 const mongoose = require('mongoose');
+
 const consultationSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  service: String,
-  datetime: Date,
-  notes: String,
-  createdAt: { type: Date, default: Date.now }
+  fullName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true
+  },
+  date: {
+    type: Date,
+    required: true
+  },
+  service: {
+    type: String,
+    required: true
+  },
+  notes: {
+    type: String,
+    default: ''
+  },
+  submittedAt: {
+    type: Date,
+    default: Date.now
+  }
 });
+
 module.exports = mongoose.model('Consultation', consultationSchema);
