@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 const User = require('../models/User');
 const Review = require('../models/Review'); // adjust path as needed
 const { body, validationResult } = require('express-validator');
-const Consultation = require('./models/Consultation');
+const Consultation = require('../models/Consultation');
 
 dotenv.config();
 const app = express();
